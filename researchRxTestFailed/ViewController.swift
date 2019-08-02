@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import RxSwift
 
 class ViewController: UIViewController {
 
+    let paresenter: SomePresenter! = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        //
     }
-
-
 }
 

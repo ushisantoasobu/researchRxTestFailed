@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import RxSwift
+import RxTest
 @testable import researchRxTestFailed
 
 class researchRxTestFailedTests: XCTestCase {
@@ -19,16 +21,49 @@ class researchRxTestFailedTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testExample1() {
+        let presenter1 = SomePresenter(repository: MockedSomeRepository(),
+                                      subscribeScheduler: ConcurrentMainScheduler.instance)
+        presenter1.some()
+        XCTAssertEqual(presenter1.list.count, 2)
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testExample2() {
+        let presenter2 = SomePresenter(repository: MockedSomeRepository(),
+                                      subscribeScheduler: ConcurrentMainScheduler.instance)
+        presenter2.some()
+        XCTAssertEqual(presenter2.list.count, 2)
+    }
+
+    func testExample3() {
+        let presenter3 = SomePresenter(repository: MockedSomeRepository(),
+                                      subscribeScheduler: SerialDispatchQueueScheduler.init(qos: .default))
+        presenter3.some()
+        XCTAssertEqual(presenter3.list.count, 2)
+    }
+
+    func testExample4() {
+        let presenter4 = SomePresenter(repository: MockedSomeRepository(),
+                                      subscribeScheduler: ConcurrentMainScheduler.instance)
+        presenter4.some()
+        XCTAssertEqual(presenter4.list.count, 2)
+    }
+
+    func testExample5() {
+        let presenter5 = SomePresenter(repository: MockedSomeRepository(),
+                                      subscribeScheduler: ConcurrentMainScheduler.instance)
+        presenter5.some()
+        XCTAssertEqual(presenter5.list.count, 2)
+    }
+
+    class MockedSomeRepository: SomeRepository {
+        func getSome() -> Single<[SomeEntity]> {
+            return Single.just(
+                [
+                    SomeEntity(id: 100, name: "hoge"),
+                    SomeEntity(id: 101, name: "fuga")
+                ]
+            )
         }
     }
-
 }

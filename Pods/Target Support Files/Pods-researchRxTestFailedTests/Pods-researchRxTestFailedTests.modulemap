@@ -1,0 +1,6 @@
+framework module Pods_researchRxTestFailedTests {
+  umbrella header "Pods-researchRxTestFailedTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
